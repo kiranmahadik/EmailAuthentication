@@ -1,0 +1,17 @@
+.main-div mat-card {
+    padding: 0px;
+}
+
+.login-form {
+    padding: 20px;
+}
+
+.loginLine {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.l {
+    color: red; 
+    cursor: pointer;
+}

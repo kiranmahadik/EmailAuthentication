@@ -1,7 +1,8 @@
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Login Page</mat-toolbar>
-        <form fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+        <form [formGroup]="userRegistration" (ngSubmit)="login()" fxLayoutAlign="stretch" fxLayout="column"
+            class="login-form">
             <mat-form-field>
                 <input matInput placeholder="Email">
             </mat-form-field>

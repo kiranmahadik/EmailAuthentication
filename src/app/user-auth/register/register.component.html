@@ -13,7 +13,7 @@
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Registration Page</mat-toolbar>
-        <div [formGroup]="UserRegistration">
+        <form [formGroup]="userRegistration" (ngSubmit)="register()">
             <div fxLayoutAlign="stretch" fxLayout="column" class="login-form">
 
                 <mat-form-field>
@@ -25,21 +25,21 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput="" formControlName="fullName" placeholder="Full Name">
+                    <input matInput="" formControlName="name" placeholder="Full Name">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput="" formControlName="companyName" placeholder="Company Name">
+                    <input matInput="" formControlName="company" placeholder="Company Name">
                 </mat-form-field>
 
-                <button mat-raised-button color="primary" type="submit" (click)="loadLogin()">Register</button>
+                <button mat-raised-button color="primary" type="submit">Register</button>
 
 
                 <label class="loginLine" (click)="loadLogin()">already has account : click here
                     to<label class="l"> login</label></label>
 
             </div>
-        </div>
+        </form>
 
     </mat-card>
 </div>

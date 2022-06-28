@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { UsersDataService } from '../../services/users-data.service'
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,10 @@ export class LoginComponent implements OnInit {
   loadVerify()
   {
     this.route.navigate(['/user-auth/verify']);
+  }
+
+  login(){
+    
   }
 
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersDataService } from '../../services/users-data.service'
+
+
 
 @Component({
   selector: 'app-register',
@@ -9,33 +12,56 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class RegisterComponent implements OnInit {
 
-  UserRegistration!: FormGroup;
+  userRegistration!: FormGroup;
+  userName: any;
+  url = 'http://basic-api.ngminds.com/auth/register';
 
-  constructor(private route: Router, private fb: FormBuilder) { }
+  constructor(private route: Router, private fb: FormBuilder, private userData: UsersDataService) {
+  }
 
   ngOnInit(): void {
-    this.UserRegistration = this.fb.group({
+    this.userRegistration = this.fb.group({
       email: [''],
       password: [''],
-      fullName: [''],
-      companyName: ['']
+      name: [''],
+      company: ['']
     })
+
+    /* console.log('Form data : ', this.UserRegistration.value);
+    console.log(this.user);
+    this.userData.postData(this.url, this.UserRegistration).subscribe(data => {
+      this.userName = data.user.name;
+      console.log('Data received', this.userName);
+    }); */
 
   }
 
-  loadLogin(): any {
-    this.route.navigate(['/user-auth/login']); // navigate to login page
+  register(): any {
 
-    let email = this.UserRegistration.value.email;
+    console.log(this.userRegistration);
+
+    this.userData.postData(this.url, this.userRegistration.value).subscribe(data => {
+      this.userName = data.user.name;
+      console.log('Data received', this.userName);
+    });
+
+
+    /* let email = this.UserRegistration.value.email;
     let password = this.UserRegistration.value.password;
     let fullName = this.UserRegistration.value.fullName;
     let compantName = this.UserRegistration.value.companyName;
     console.warn(this.UserRegistration.value);
-    //console.warn('email is : ' + email);
+    console.warn('email is : ' + email); */
+
+
 
 
   }
 
+  loadLogin(): any {
+
+    this.route.navigate(['/user-auth/login']); // navigate to login page
+  }
 
 
 }

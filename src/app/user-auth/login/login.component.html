@@ -1,20 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="login.component.ts"></script>
+
+    <link rel="stylesheet" href="login.component.css">
+</head>
+
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Login Page</mat-toolbar>
-        <form [formGroup]="userRegistration" (ngSubmit)="login()" fxLayoutAlign="stretch" fxLayout="column"
-            class="login-form">
-            <mat-form-field>
-                <input matInput placeholder="Email">
-            </mat-form-field>
+        <form [formGroup]="userLogin" (ngSubmit)="login()">
+            <div fxLayoutAlign="stretch" fxLayout="column" class="login-form">
 
-            <mat-form-field>
-                <input matInput type="password" placeholder="Password">
-            </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="email" matInput="" placeholder="Email">
+                </mat-form-field>
 
-            <button mat-raised-button color="primary" type="submit" (click)="loadVerify()">Login</button>
+                <mat-form-field>
+                    <input formControlName="password" matInput="" type="password" placeholder="Password">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit">Login</button>
+
+            </div>
 
         </form>
 
     </mat-card>
 
 </div>
+
+</html>

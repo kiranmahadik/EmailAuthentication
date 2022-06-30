@@ -14,7 +14,13 @@ export class RegisterComponent implements OnInit {
 
   userRegistration!: FormGroup;
   userName: any;
-  url = 'http://basic-api.ngminds.com/auth/register';
+  register_token: any;
+
+  // register_url taken from insomnia
+  register_url = 'http://basic-api.ngminds.com/auth/register';
+
+  // sendVerificationEmail_url taken from insomnia
+  sendVerificationEmail_url = 'http://basic-api.ngminds.com/auth/send-verification-email';
 
   constructor(private route: Router, private fb: FormBuilder, private userData: UsersDataService) {
   }
@@ -26,25 +32,25 @@ export class RegisterComponent implements OnInit {
       name: [''],
       company: ['']
     })
-
-    /* console.log('Form data : ', this.UserRegistration.value);
-    console.log(this.user);
-    this.userData.postData(this.url, this.UserRegistration).subscribe(data => {
-      this.userName = data.user.name;
-      console.log('Data received', this.userName);
-    }); */
-
   }
 
+
+  // register() method : it is called when register button is clicked
   register(): any {
 
     console.log(this.userRegistration);
 
-    this.userData.postData(this.url, this.userRegistration.value).subscribe(data => {
+    this.userData.postData(this.register_url, this.userRegistration.value).subscribe(data => {
       this.userName = data.user.name;
-      console.log('Data received', this.userName);
-    });
+      this.register_token = data.token;
 
+      this.userData.postEmail(this.sendVerificationEmail_url, this.register_token).subscribe((DataOne: any) => {
+        console.log('Verification Email sent');
+      });
+
+      console.log('Data received', this.userName);
+      console.log('Token from register : ', this.register_token);
+    });
 
     /* let email = this.UserRegistration.value.email;
     let password = this.UserRegistration.value.password;
@@ -52,9 +58,6 @@ export class RegisterComponent implements OnInit {
     let compantName = this.UserRegistration.value.companyName;
     console.warn(this.UserRegistration.value);
     console.warn('email is : ' + email); */
-
-
-
 
   }
 

@@ -38,9 +38,11 @@ export class LoginComponent implements OnInit {
       this.userEmail = data.user.email;
       this.token = data.token;
       console.log('Data received and Email is : ', this.userEmail);
-      console.log('Token is : ', this.token);
-      localStorage.setItem("Email", JSON.stringify(data.user.email));
-      localStorage.setItem("Token", JSON.stringify(data.token));
+      console.log('Token from login : ', this.token);
+      /* localStorage.setItem("Email", JSON.stringify(data.user.email));
+      localStorage.setItem("Token", JSON.stringify(data.token)); */
+
+      this.route.navigate(['/home/profile']);
     });
   }
 

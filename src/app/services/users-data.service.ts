@@ -22,7 +22,8 @@ export class UsersDataService {
       'content-type': 'application/json',
       'Authorization': `Bearer ${register_token}`
     });
-
+    // post() method's second parameter is data, but here we don't have data.
+    // So we have to give empty string ("") as a second parameter.
     return this.http.post<any>(sendVerificationEmail_url, "", { headers: httpHeaders });
   }
 }

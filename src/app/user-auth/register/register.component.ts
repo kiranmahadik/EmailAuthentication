@@ -50,7 +50,11 @@ export class RegisterComponent implements OnInit {
 
       console.log('Data received', this.userName);
       console.log('Token from register : ', this.register_token);
+      localStorage.setItem("Email", JSON.stringify(data.user.email));
+      localStorage.setItem("Token", JSON.stringify(data.token));
     });
+
+    this.route.navigate(['/user-auth/verify'], { queryParams: { token: this.register_token } }); // navigate to verify page
 
     /* let email = this.UserRegistration.value.email;
     let password = this.UserRegistration.value.password;
